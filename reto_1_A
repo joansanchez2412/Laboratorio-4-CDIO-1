@@ -1,0 +1,23 @@
+const int pinA = 4;
+const int pinB = 5;
+const int activador = 6;
+void setup() {
+  pinMode(pinA, OUTPUT);
+  pinMode(pinB, OUTPUT);
+  pinMode(activador, INPUT_PULLUP);
+}
+
+void loop() {
+  int estado = digitalRead(activador);
+  
+  
+  if (estado == HIGH) {
+    digitalWrite(pinA, HIGH);
+    digitalWrite(pinB, LOW);
+    delay(1500);
+    
+    digitalWrite(pinA, LOW);
+    digitalWrite(pinB, HIGH);
+    delay(1500);
+  }
+}
