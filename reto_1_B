@@ -1,1 +1,74 @@
+// Pines del Motor 1
+const int IN1 = 8;
+const int IN2 = 9;
 
+// Pines del Motor 2
+const int IN3 = 10;
+const int IN4 = 11;
+
+// Variable para controlar el tiempo
+unsigned long tiempoAnterior = 0;
+const long intervalo = 15000; // 15 segundos en milisegundos
+
+// Variable para controlar la dirección
+bool direccionHoraria = true;
+
+void setup() {
+  // Configurar los pines como salidas
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+  
+  // Iniciar motores en dirección horaria
+  moverHorario();
+}
+
+void loop() {
+  // Obtener el tiempo actual
+  unsigned long tiempoActual = millis();
+  
+  // Verificar si han pasado 15 segundos
+  if (tiempoActual - tiempoAnterior >= intervalo) {
+    tiempoAnterior = tiempoActual;
+    
+    // Cambiar la dirección
+    direccionHoraria = !direccionHoraria;
+    
+    if (direccionHoraria) {
+      moverHorario();
+    } else {
+      moverAntihorario();
+    }
+  }
+}
+
+// Función para mover motores en sentido horario
+void moverHorario() {
+  // Motor 1 horario
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  
+  // Motor 2 horario
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+}
+
+// Función para mover motores en sentido antihorario
+void moverAntihorario() {
+  // Motor 1 antihorario
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  
+  // Motor 2 antihorario
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+}
+
+// Función opcional para detener los motores
+void detenerMotores() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, LOW);
+}
