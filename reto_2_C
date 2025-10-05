@@ -1,0 +1,61 @@
+int IN3  = 3;  
+int IN4  = 4;   
+int ENB  = 5;    
+int IN7  = 7;  
+int IN8  = 8;  
+int ENB2 = ;   
+int ledBajo  = 9;
+int ledMedio = 10;  
+int ledAlto  = 11;
+
+void setup() {
+  pinMode(ENB, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+  pinMode(ENB2, OUTPUT);
+  pinMode(IN7, OUTPUT);
+  pinMode(IN8, OUTPUT);
+  pinMode(ledBajo, OUTPUT);
+  pinMode(ledMedio, OUTPUT);
+  pinMode(ledAlto, OUTPUT);
+  
+}
+
+void loop() {
+  
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+  digitalWrite(IN7, LOW);
+  digitalWrite(IN8, HIGH);
+	
+  analogWrite(ENB, 55);
+  digitalWrite(ledBajo, HIGH);
+  digitalWrite(ledMedio, LOW);
+  digitalWrite(ledAlto, LOW);
+  delay(2000);
+  analogWrite(ENB, 105);
+  digitalWrite(ledBajo, LOW);
+  digitalWrite(ledMedio, HIGH);
+  digitalWrite(ledAlto, LOW);
+  delay(2000);
+  analogWrite(ENB, 255);
+    digitalWrite(ledBajo, LOW);
+  digitalWrite(ledMedio, LOW);
+  digitalWrite(ledAlto, HIGH);
+  delay(2000);
+  
+  
+  analogWrite(ENB2, 55);
+  delay(2000);
+  analogWrite(ENB2, 105);
+  delay(2000);
+  analogWrite(ENB2, 255);
+  delay(2000);
+  
+  analogWrite(ENB, 0);
+  delay(1500);
+  analogWrite(ENB2, 0);
+  delay(1500);
+  
+ 
+}
