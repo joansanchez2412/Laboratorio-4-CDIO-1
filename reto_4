@@ -1,0 +1,43 @@
+int echoPin= 7;
+int trigPin= 6;
+int IN3 = 5;
+int IN4 = 4;
+int ENB = 3;
+
+
+long duracion;
+int velocidad;
+int distancia;
+
+
+void setup() {
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(ENB, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  duracion = pulseIn(echoPin, HIGH);
+  distancia = duracion * 0.034 / 2;
+
+  velocidad = map(distancia, 5, 50, 255, 50); 
+  velocidad = constrain(velocidad, 0, 255);
+
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  analogWrite(ENB, velocidad);
+
+  Serial.print("Distancia: "); Serial.print(distancia);
+  Serial.print(" cm  Velocidad: "); Serial.println(velocidad);
+
+  delay(100);
+}
