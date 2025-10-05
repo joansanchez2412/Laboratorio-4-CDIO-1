@@ -1,0 +1,36 @@
+int ENB = 5;
+int IN4 = 4;
+int IN3 = 3;
+int sensorIR = 2;
+
+int contador=0;
+
+void setup() {
+  pinMode(ENB, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+  pinMode(sensorIR, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int estado=digitalRead(sensorIR);
+  if (estado=digitalRead(sensorIR) == HIGH){ 
+    contador++;
+    delay(300);
+  }
+
+  if (contador == 0) {
+    analogWrite(ENB, 0);
+  } else if (contador < 5 && contador > 0) {
+    analogWrite(ENB, 110);
+  } else if (contador < 10 && contador >= 5) {
+    analogWrite(ENB, 180);
+  } else {
+    analogWrite(ENB, 255);
+  }
+
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  Serial.println(contador);
+}
